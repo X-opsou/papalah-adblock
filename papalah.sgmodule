@@ -1,0 +1,56 @@
+#!name=Papalah 彻底去广告
+#!desc=去除 papalah.com 的横幅广告、悬浮广告、内嵌广告、点击跳转/弹窗广告与视频开头贴片广告，并屏蔽站点反广告拦截检测。适配 Surge iOS / Mac。
+#!author=Hermes
+#!category=去广告
+
+[Rule]
+# —— ExoClick ——
+DOMAIN-SUFFIX,magsrv.com,REJECT
+DOMAIN-SUFFIX,exoclick.com,REJECT
+DOMAIN-SUFFIX,exosrv.com,REJECT
+DOMAIN-SUFFIX,exdynsrv.com,REJECT
+# —— JuicyAds ——
+DOMAIN-SUFFIX,jads.co,REJECT
+DOMAIN-SUFFIX,juicyads.com,REJECT
+DOMAIN-SUFFIX,juicyads.net,REJECT
+# —— TrafficStars / TSY ——
+DOMAIN-SUFFIX,tsyndicate.com,REJECT
+DOMAIN-SUFFIX,tsyndicate.net,REJECT
+DOMAIN-SUFFIX,yellowishgather.com,REJECT
+DOMAIN-SUFFIX,boxypluckunrelated.com,REJECT
+DOMAIN-SUFFIX,farflungeffective.com,REJECT
+DOMAIN-SUFFIX,bkcdn.net,REJECT
+DOMAIN-SUFFIX,pxltag.com,REJECT
+DOMAIN-SUFFIX,uuidksinc.net,REJECT
+# —— 站内其他广告位 ——
+DOMAIN-SUFFIX,adxadserv.com,REJECT
+DOMAIN-SUFFIX,amon1.net,REJECT
+DOMAIN-SUFFIX,cdn-fc.com,REJECT
+DOMAIN-SUFFIX,doppiocdn.com,REJECT
+DOMAIN-SUFFIX,marzaent.com,REJECT
+DOMAIN-SUFFIX,janusaent.com,REJECT
+DOMAIN-SUFFIX,pncloudfl.com,REJECT
+DOMAIN-SUFFIX,silent-basis.pro,REJECT
+DOMAIN-SUFFIX,irresponsible-smoke.com,REJECT
+DOMAIN-SUFFIX,freeserviceplays.com,REJECT
+DOMAIN-SUFFIX,stbuttons.click,REJECT
+DOMAIN-SUFFIX,mavrtracktor.com,REJECT
+# —— 常见弹窗/直链网络（兜底） ——
+DOMAIN-SUFFIX,adsterra.com,REJECT
+DOMAIN-SUFFIX,popads.net,REJECT
+DOMAIN-SUFFIX,popcash.net,REJECT
+DOMAIN-SUFFIX,propellerads.com,REJECT
+DOMAIN-SUFFIX,clickadu.com,REJECT
+DOMAIN-SUFFIX,hilltopads.net,REJECT
+DOMAIN-SUFFIX,trafficjunky.net,REJECT
+DOMAIN-SUFFIX,adnium.com,REJECT
+DOMAIN-SUFFIX,plugrush.com,REJECT
+DOMAIN-SUFFIX,ero-advertising.com,REJECT
+DOMAIN-SUFFIX,adspyglass.com,REJECT
+DOMAIN-SUFFIX,adcash.com,REJECT
+
+[Script]
+papalah-ads = type=http-response,pattern=^https?://(www\.)?papalah\.com/(?!lib/|css/|images/|cdn-cgi/),requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/X-opsou/papalah-adblock@main/papalah-ads.js
+
+[MITM]
+hostname = %APPEND% www.papalah.com, papalah.com
